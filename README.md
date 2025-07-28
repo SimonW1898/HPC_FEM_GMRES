@@ -27,14 +27,10 @@ Discretization via FEM leads to large sparse linear systems, which are solved ef
 
 ---
 
-## File & Folder Structure
-
-- `hpc_report2-2-final/`
-    - **main.tex**: Complete technical report (LaTeX) explaining theory, algorithms, implementation, and results.
-    - **Figures/**: Plots for convergence, solution fields, and performance metrics.
-    - **mesh**, **coord**, **bound**: Example input files for mesh topology, node coordinates, and boundary conditions.
+## File Structure
 
 - `src/` or root directory:
+    - **Report.pdf**: Complete technical report (LaTeX) explaining theory, algorithms, implementation, and results.
     - **main.cpp**: Driver program assembling the FEM problem and invoking the solver.
     - **GMRES.h**: Implementation of the GMRES iterative algorithm, with parallel Householder and Givens routines.
     - **sparse.h**: Custom sparse matrix class in CSR format, including parallel matrix-vector multiplication and preconditioning.
