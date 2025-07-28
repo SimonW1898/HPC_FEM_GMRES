@@ -1,4 +1,4 @@
-# High Performance Computing: Parallel Finite Element Solver for Convection-Diffusion Equations
+# Parallel Finite Element Solver for Convection-Diffusion Equations
 
 ## Project Overview
 
