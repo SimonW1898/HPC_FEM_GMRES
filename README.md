@@ -80,7 +80,6 @@ The detailed project report contains:
 
 ## Author
 
-**Simon Wenchel**  
 High Performance Computing & Scientific Programming  
 Contact: 
 
