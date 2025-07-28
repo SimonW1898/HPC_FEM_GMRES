@@ -1,0 +1,61 @@
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{8cm}|p{3cm}|p{7cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Class Name} & \multicolumn{2}{p{11cm}|}{sparse} \\
+\hline
+\multicolumn{3}{|p{16cm}|}{\textbf{Private Members}} \\
+\hline
+\lstinline|nrow| & \lstinline|int| & Number of rows \\
+\hline
+\lstinline|ncol| & \lstinline|int| & Number of columns \\
+\hline
+\lstinline|n_term| & \lstinline|int| & Number of non-zero matrix elements \\
+\hline
+\lstinline|coef| & \lstinline|double*| & Pointer to non-zero matrix elements \\
+\hline
+\lstinline|iat| & \lstinline|int*| & Pointer to the first non-zero column index \\
+\hline
+\lstinline|ja| & \lstinline|int*| & Pointer to the column indices \\
+\hline
+\multicolumn{3}{|p{16cm}|}{\textbf{Public Members}} \\
+\hline
+\lstinline|sparse()| & sparse & Default constructor \\
+\hline
+\lstinline|sparse(int nrow, int ncol, int n_term)| & sparse & Parameterized constructor \\
+\hline
+\lstinline|~sparse()| & void & Destructor \\
+\hline
+\multicolumn{3}{|p{16cm}|}{\textit{Get and Set Methods}} \\
+\hline
+\lstinline|full2sparse(double** A, int n_row)| & void & Convert full matrix to sparse \\
+\hline
+\lstinline|addition_update(sparse* B_ptr)| & void & Addition and update operation \\
+\hline
+\lstinline|scalarMult(double alpha)| & void & Scalar multiplication \\
+\hline
+\lstinline|post_MV(double* v, double* y)| & void & Matrix-vector multiplication \\
+\hline
+\lstinline|pre_MV(double* v, double* y)| & void & Vector-matrix multiplication \\
+\hline
+\lstinline|matrixProduct(sparse* A_ptr, sparse* result)| & void & Matrix product \\
+\hline
+\lstinline|diag(double* v)| & void & diagonal submatrix $D$ \\
+\hline
+\lstinline|getJacobi(double* v)| & void & Inverse of the Diagonal matrix $D^{-1}$\\
+\hline
+\lstinline|diag_x_sparse(double* diag)| & void & Diagonal matrix times sparse \\
+\hline
+\lstinline|left_Jacobi()| & double* & Left Jacobi preconditioning $D^{-1}A$ \\
+\hline
+\lstinline|printMat()| & void & Print matrix \\
+\hline
+\lstinline|printComponents()| & void & Print components \\
+\hline
+\end{tabular}
+\caption{UML Diagram of the \texttt{sparse} Class}
+\label{tab:UML}
+
+\end{table}
