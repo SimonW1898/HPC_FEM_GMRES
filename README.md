@@ -1,71 +1,124 @@
-# Parallel Finite Element Solver for Convection-Diffusion Equations
+# HPC_FEM_GMRES: High-Performance FEM and GMRES Solver for Convection-Diffusion Problems
 
 ## Project Overview
 
-This repository showcases my work on high-performance numerical linear algebra and scientific computing, focused on solving 1D and 2D transient convection-diffusion equations using parallel programming techniques. The centerpiece is an efficient finite element method (FEM) solver for large sparse linear systems, leveraging OpenMP for shared-memory parallelization.
+This repository demonstrates efficient numerical solution techniques for 1D and 2D transient convection-diffusion equations using the Finite Element Method (FEM) and a custom GMRES iterative solver. The project focuses on sparse matrix storage, parallelization with OpenMP, and robust linear algebra routines, with all core logic implemented in C++ from scratch.
 
-**Main highlights:**
-- Implementation of custom sparse matrix data structures (CSR format) for memory-efficient storage and fast computation.
-- Assembly of FEM system matrices from mesh and boundary input files.
-- Solution of large-scale linear systems via the Generalized Minimal Residual (GMRES) iterative algorithm, including advanced features like Householder projections, Givens rotations, Jacobi preconditioning, and restart strategies.
-- Rigorous benchmarking and performance analysis of parallelization efficiency and scalability.
-- Comprehensive technical report (LaTeX) documenting theory, design, algorithms, results, and code.
+**All numerical algorithms, matrix structures (CSR), and iterative solvers are written without external scientific libraries. Parallelization is achieved using OpenMP, and the implementation is designed for extensibility and scientific benchmarking.**
+
+**Highlights:**
+- Custom sparse matrix (CSR) class and efficient matrix-vector multiplication.
+- FEM system assembly from mesh and boundary input files.
+- GMRES solver with Householder projections, Givens rotations, and Jacobi preconditioning.
+- OpenMP parallelization across matrix and solver routines.
+- Comprehensive technical report included (theory, design, experiments, annotated code).
 
 ---
 
 ## Scientific Problem Tackled
 
-The core mathematical problem is the transient convection-diffusion equation:
+This project addresses the numerical solution of the transient convection-diffusion equation:
 
-**1D:**  
-$$-D \frac{\partial^{2} c}{\partial x^{2}} - v_x \frac{\partial c}{\partial x} = \frac{\partial c}{\partial t}$$
+### 1D Form
+$$
+-D \frac{\partial^2 c}{\partial x^2} - v_x \frac{\partial c}{\partial x} = \frac{\partial c}{\partial t}
+$$
 
-**2D:**  
-$$\frac{\partial}{\partial x}\left(D_x \frac{\partial c}{\partial x}\right) + \frac{\partial}{\partial y}\left(D_y \frac{\partial c}{\partial y}\right)- v_x \frac{\partial c}{\partial x} - v_y \frac{\partial c}{\partial y} = \frac{\partial c}{\partial t} + f$$
+### 2D Form
+$$
+\frac{\partial}{\partial x}\left(D_x \frac{\partial c}{\partial x}\right) + \frac{\partial}{\partial y}\left(D_y \frac{\partial c}{\partial y}\right) - v_x \frac{\partial c}{\partial x} - v_y \frac{\partial c}{\partial y} = \frac{\partial c}{\partial t}
+$$
 
-Discretization via FEM leads to large sparse linear systems, which are solved efficiently and accurately using advanced iterative solvers and parallelization. Boundary conditions and mesh topology are flexibly specified via input files.
+where $D$, $v_x$, and $v_y$ are diffusion and convection coefficients. FEM discretization leads to large sparse linear systems, solved efficiently with GMRES and parallelization.
+
+---
+
+## Main Components
+
+### 1. FEM and Sparse Matrix Modules
+
+- **CSR Sparse Matrix Structure:**  
+  Custom implementation for memory-efficient storage and fast arithmetic.
+- **Matrix Assembly:**  
+  FEM system matrix built from mesh and boundary files (text format).
+- **Core Linear Algebra:**  
+  All matrix, vector, and FEM routines written in C++ for transparency and performance.
+
+### 2. GMRES Iterative Solver
+
+- **Robust GMRES Algorithm:**  
+  Householder projections, Givens rotations, Jacobi preconditioning, and restart mechanics.
+- **Parallelization:**  
+  Heavy use of OpenMP for parallel loops, reductions, and atomic operations across matrix-vector products and solver steps.
+
+### 3. Analysis and Benchmarking
+
+- **Performance Studies:**  
+  Benchmark results for speedup and scalability on large matrices (SuiteSparse Collection).
+- **Documentation:**  
+  Full technical report (LaTeX/PDF) covering mathematical background, algorithmic details, results, and code walkthrough.
 
 ---
 
 ## File Structure
 
-- `src/` or root directory:
-    - **Report.pdf**: Complete technical report (LaTeX) explaining theory, algorithms, implementation, and results.
-    - **main.cpp**: Driver program assembling the FEM problem and invoking the solver.
-    - **GMRES.h**: Implementation of the GMRES iterative algorithm, with parallel Householder and Givens routines.
-    - **sparse.h**: Custom sparse matrix class in CSR format, including parallel matrix-vector multiplication and preconditioning.
-    - **functions.h**, **fem_functions.h**: Core FEM and linear algebra routines.
-    - **Other C++ source/header files** supporting the solver and utilities.
+```
+HPC_FEM_GMRES/
+├── Report.pdf                # Complete technical report (LaTeX)
+├── main.cpp                  # Main driver: problem setup, matrix assembly, solver invocation
+├── GMRES.h                   # GMRES algorithm, Householder/Givens/Jacobi routines
+├── sparse.h                  # CSR sparse matrix implementation
+├── functions.h               # Core FEM and linear algebra utilities
+├── fem_functions.h           # FEM assembly and boundary routines
+├── [Other .cpp/.h files]     # Supporting code and utilities
+└── README.md                 # Project documentation
+```
 
 ---
 
-## Key Contributions & Achievements
+## Dependencies
 
-- **Advanced Parallelization:** Extensive use of OpenMP for parallel loops, reductions, atomics, and scheduling strategies to maximize shared-memory performance.
-- **Custom Sparse Matrix Operations:** Designed and implemented efficient storage and operations for large sparse matrices, crucial for scientific computations.
-- **Robust Iterative Solver:** Developed a flexible GMRES solver with state-of-the-art numerical techniques (Householder projections, Givens rotations, Jacobi preconditioning, and restart).
-- **Performance Analysis:** Conducted thorough benchmarking, measuring speedup, efficiency, and scalability on large real-world matrices from the SuiteSparse Matrix Collection.
-- **Technical Communication:** Authored a comprehensive report detailing the mathematical background, algorithmic strategies, and experimental results.
+- **C++ (core implementation)**
+- **OpenMP** (parallelization)
+- **Standard Template Library (STL)**
+- **LaTeX** (for report compilation)
 
----
-
-## Technologies Used
-
-- **Languages:** C++ (core implementation), LaTeX (report)
-- **Libraries:** OpenMP (parallelization), STL (data structures)
-- **Platforms:** Linux/macOS (tested on Intel i5), any system with a C++ compiler and OpenMP support
+Tested on Linux/macOS (Intel i5/i7). Requires C++ compiler with OpenMP support.
 
 ---
 
-## Report
+## Usage
 
-The detailed project report contains:
-- Mathematical derivation of the FEM formulation for convection-diffusion problems.
-- Description of the assembly process from input files.
-- Algorithmic explanation of the GMRES solver and parallelization strategies.
-- Performance results on large-scale benchmarks.
-- Figures illustrating convergence, speedup, efficiency, and solution fields.
-- Annotated code listings in the appendix.
+To compile and run:
+```bash
+g++ -O3 -fopenmp main.cpp -o fem_solver
+./fem_solver
+```
+Configure mesh and boundary files as described in the report.
+
+---
+
+## Known Issues & Limitations
+
+- Only shared-memory parallelization (OpenMP) is implemented; distributed-memory (MPI) is not supported.
+- Mesh and boundary input formats are simple text files (see report for specifications).
+- Extension to higher dimensions or more element types requires further development.
+
+---
+
+## Contributing
+
+Contributions welcome, especially for:
+- Alternative preconditioners or solver optimizations
+- MPI or domain decomposition support
+- Mesh generation and visualization tools
+- Performance tuning and code refactoring
+
+---
+
+## License
+
+This project is for academic research. Please cite appropriately if used in publications.
 
 ---
 
@@ -77,5 +130,5 @@ The detailed project report contains:
 
 ## Note
 
-This repository is presented for professional review and demonstration of technical skills in scientific computing, parallel programming, and numerical methods.  
-For any questions or further details, feel free to reach out!
+This repository is presented for professional review and demonstration of technical skills in scientific computing, parallel programming, and numerical PDE solvers.  
+For questions, suggestions, or collaboration inquiries, contact me via LinkedIn or GitHub!
