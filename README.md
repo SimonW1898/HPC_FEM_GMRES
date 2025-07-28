@@ -36,7 +36,7 @@ Discretization via FEM leads to large sparse linear systems, which are solved ef
 
 - `src/` or root directory:
     - **main.cpp**: Driver program assembling the FEM problem and invoking the solver.
-    - **GMRES.cpp / GMRES.h**: Implementation of the GMRES iterative algorithm, with parallel Householder and Givens routines.
+    - **GMRES.h**: Implementation of the GMRES iterative algorithm, with parallel Householder and Givens routines.
     - **sparse.h**: Custom sparse matrix class in CSR format, including parallel matrix-vector multiplication and preconditioning.
     - **functions.h**, **fem_functions.h**: Core FEM and linear algebra routines.
     - **Other C++ source/header files** supporting the solver and utilities.
