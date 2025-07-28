@@ -18,11 +18,11 @@ This repository showcases my work on high-performance numerical linear algebra a
 The core mathematical problem is the transient convection-diffusion equation:
 
 **1D:**  
-$$ -D \frac{\partial^{2} c}{\partial x^{2}} - v_x \frac{\partial c}{\partial x} = \frac{\partial c}{\partial t} $$
+$$-D \frac{\partial^{2} c}{\partial x^{2}} - v_x \frac{\partial c}{\partial x} = \frac{\partial c}{\partial t}$$
 
 **2D:**  
-$$ \frac{\partial}{\partial x}\left(D_x \frac{\partial c}{\partial x}\right) + \frac{\partial}{\partial y}\left(D_y \frac{\partial c}{\partial y}\right) $$
-$$ - v_x \frac{\partial c}{\partial x} - v_y \frac{\partial c}{\partial y} = \frac{\partial c}{\partial t} + f $$
+$$\frac{\partial}{\partial x}\left(D_x \frac{\partial c}{\partial x}\right) + \frac{\partial}{\partial y}\left(D_y \frac{\partial c}{\partial y}\right)
+- v_x \frac{\partial c}{\partial x} - v_y \frac{\partial c}{\partial y} = \frac{\partial c}{\partial t} + f$$
 
 Discretization via FEM leads to large sparse linear systems, which are solved efficiently and accurately using advanced iterative solvers and parallelization. Boundary conditions and mesh topology are flexibly specified via input files.
 
