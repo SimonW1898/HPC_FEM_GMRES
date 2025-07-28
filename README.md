@@ -71,8 +71,7 @@ The detailed project report contains:
 
 ## Author
 
-High Performance Computing & Scientific Programming  
-Contact: 
+**[Simon W](https://www.linkedin.com/in/simon-w-32183a292)**  
 
 ---
 
