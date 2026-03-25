@@ -106,25 +106,9 @@ Configure mesh and boundary files as described in the report.
 
 ---
 
-## Contributing
-
-Contributions welcome, especially for:
-- Alternative preconditioners or solver optimizations
-- MPI or domain decomposition support
-- Mesh generation and visualization tools
-- Performance tuning and code refactoring
-
----
-
 ## License
 
 This project is for academic research. Please cite appropriately if used in publications.
-
----
-
-## Author
-
-**[Simon Wenchel](https://www.linkedin.com/in/simon-w-32183a292)**  
 
 ---
 
